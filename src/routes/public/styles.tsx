@@ -22,6 +22,19 @@ const styles = StyleSheet.create({
         height: metrics.dimensions.height * 0.04,
         resizeMode: 'cover',
     },
+
+    containArrowBack: {
+        flexDirection: 'row',
+        position: 'relative',
+        right: 55,
+    },
+
+    picture2: {
+        width: metrics.dimensions.width * 0.25,
+        height: metrics.dimensions.height * 0.04,
+        resizeMode: 'cover',
+        marginLeft: 15,
+    },
 });
 
 export default styles;
