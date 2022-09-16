@@ -25,7 +25,7 @@ const App: React.FC = () => {
     return (
         <NavigationContainer>
             <RoutesNetflix />
-            <StatusBar style="auto" />
+            <StatusBar style="light" />
         </NavigationContainer>
     );
 };

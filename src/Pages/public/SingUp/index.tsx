@@ -6,6 +6,7 @@ import {
     KeyboardAvoidingView,
     TouchableOpacity,
 } from 'react-native';
+import { MotiText, MotiView } from 'moti';
 import React, { useState } from 'react';
 
 import styles from './styles';
@@ -19,9 +20,21 @@ const SingUp: React.FC = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <KeyboardAvoidingView style={[styles.containContent]}>
                     <View style={[styles.MT5]}>
-                        <View style={[styles.containLabel]}>
-                            <Text style={[styles.textLabel]}>Email</Text>
-                        </View>
+                        <MotiView
+                            from={{ top: 40 }}
+                            animate={{ top: 20 }}
+                            transition={{ type: 'spring' }}
+                            style={[styles.containLabel]}
+                        >
+                            <MotiText
+                                from={{ scale: 1.2 }}
+                                animate={{ scale: 1 }}
+                                transition={{ type: 'spring' }}
+                                style={[styles.textLabel]}
+                            >
+                                Email
+                            </MotiText>
+                        </MotiView>
                         <TextInput
                             defaultValue={email}
                             onChangeText={setEmail}
@@ -40,9 +53,21 @@ const SingUp: React.FC = () => {
                         />
                     </View>
                     <View style={[styles.MT5]}>
-                        <View style={[styles.containLabel]}>
-                            <Text style={[styles.textLabel]}>Senha</Text>
-                        </View>
+                        <MotiView
+                            from={{ top: 40 }}
+                            animate={{ top: 20 }}
+                            transition={{ type: 'spring' }}
+                            style={[styles.containLabel]}
+                        >
+                            <MotiText
+                                from={{ scale: 1.2 }}
+                                animate={{ scale: 1 }}
+                                transition={{ type: 'spring' }}
+                                style={[styles.textLabel]}
+                            >
+                                Senha
+                            </MotiText>
+                        </MotiView>
                         <TextInput
                             style={[styles.input]}
                             defaultValue={password}
