@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 
     input: {
         borderWidth: 1,
-        borderColor: '#0059ff',
+        borderColor: metrics.colors.color4,
         width: metrics.dimensions.width - 40,
         height: 55,
         padding: 10,
@@ -57,6 +57,10 @@ const styles = StyleSheet.create({
 
     rightEmail: {
         borderColor: '#07bd07',
+    },
+
+    inputFocused: {
+        borderColor: '#0059ff',
     },
 
     textWWrongEmail: {
