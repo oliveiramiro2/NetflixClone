@@ -1,7 +1,9 @@
-import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { View, Text, ImageBackground, Modal } from 'react-native';
+import React, { useState } from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
+import ModalSingIn from '../ModalSingIn';
+import Button from './components';
 import { metrics } from '../../../services/metrics';
 import styles from './styles';
 
@@ -59,14 +61,6 @@ const slides: ISliderData[] = [
     },
 ];
 
-const Button: React.FC = () => (
-    <TouchableOpacity>
-        <View style={[styles.button]}>
-            <Text style={[styles.textButton]}>Vamos lá</Text>
-        </View>
-    </TouchableOpacity>
-);
-
 const Images: Function = (item: IEachSlider) => (
     <View style={styles.slide}>
         <ImageBackground
@@ -80,17 +74,27 @@ const Images: Function = (item: IEachSlider) => (
     </View>
 );
 
-const HomePublic: React.FC = () => (
-    <View style={[styles.contain]}>
-        <AppIntroSlider
-            bottomButton
-            renderNextButton={() => <Button />}
-            renderDoneButton={() => <Button />}
-            renderItem={(item) => Images(item)}
-            data={slides}
-            dotStyle={styles.dotStyles}
-        />
-    </View>
-);
+const HomePublic: React.FC = () => {
+    const [showModal, setShowModal] = useState<boolean>(false);
+    return (
+        <View style={[styles.contain]}>
+            <AppIntroSlider
+                bottomButton
+                renderNextButton={() => <Button modal={setShowModal} />}
+                renderDoneButton={() => <Button modal={setShowModal} />}
+                renderItem={(item) => Images(item)}
+                data={slides}
+                dotStyle={styles.dotStyles}
+            />
+
+            <Modal
+                visible={showModal}
+                onRequestClose={() => setShowModal(false)}
+            >
+                <ModalSingIn />
+            </Modal>
+        </View>
+    );
+};
 
 export default HomePublic;
