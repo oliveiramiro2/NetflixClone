@@ -1,17 +1,15 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { metrics } from '../../services/metrics';
-
-const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     headerContain: {
-        backgroundColor: metrics.colors.color1,
+        backgroundColor: '#000000b6',
     },
 
     containText: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: width * 0.5,
+        width: metrics.dimensions.width * 0.5,
     },
 
     textRight: {
@@ -20,8 +18,8 @@ const styles = StyleSheet.create({
     },
 
     picture: {
-        width: width * 0.3,
-        height: height * 0.05,
+        width: metrics.dimensions.width * 0.25,
+        height: metrics.dimensions.height * 0.04,
         resizeMode: 'cover',
     },
 });
