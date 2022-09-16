@@ -2,8 +2,8 @@ import { View, Text, ImageBackground, Modal } from 'react-native';
 import React, { useState } from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
-import ModalSingIn from '../ModalSingIn';
-import Button from './components';
+import ModalSingIn from './components/ModalSingIn';
+import Button from './components/Button';
 import { metrics } from '../../../services/metrics';
 import styles from './styles';
 
@@ -91,7 +91,7 @@ const HomePublic: React.FC = () => {
                 visible={showModal}
                 onRequestClose={() => setShowModal(false)}
             >
-                <ModalSingIn />
+                <ModalSingIn modal={setShowModal} />
             </Modal>
         </View>
     );

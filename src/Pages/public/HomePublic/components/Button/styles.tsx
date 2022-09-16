@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { metrics } from '../../../../services/metrics';
+import { metrics } from '../../../../../services/metrics';
 
 const styles = StyleSheet.create({
     button: {

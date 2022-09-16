@@ -4,11 +4,11 @@ import React from 'react';
 import styles from './styles';
 
 interface IProps {
-    modal(params: boolean): void;
+    modal?(params: boolean): void;
 }
 
 const Button: React.FC<IProps> = ({ modal }) => (
-    <TouchableOpacity onPress={() => modal(true)}>
+    <TouchableOpacity onPress={() => modal && modal(true)}>
         <View style={[styles.button]}>
             <Text style={[styles.textButton]}>Vamos lá</Text>
         </View>

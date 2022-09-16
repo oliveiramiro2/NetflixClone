@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
 
     dotStyles: {
-        backgroundColor: 'darkgray',
+        backgroundColor: metrics.colors.color4,
     },
 
     button: {
