@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     containText: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: width * 0.5
+        width: width * 0.5,
     },
 
     textRight: {

@@ -21,7 +21,7 @@ const PublicRoutes: any = () => (
                         source={require('../../assets/imgs/netflix.png')}
                     />
                 ),
-                headerRight: ({ routes }) => (
+                headerRight: () => (
                     <View style={[styles.containText]}>
                         <TouchableOpacity>
                             <Text style={[styles.textRight]}>Privacidade</Text>
