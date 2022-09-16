@@ -76,8 +76,6 @@ module.exports = {
     'consistent-return': 'off',
     'react/no-array-index-key': 'off',
     'global-require': 'off',
-    'react/style-prop-object': ['on', {
-        "allow": ['string', 'object']
-      }]
+    'react/style-prop-object': 'off'
   },
 };

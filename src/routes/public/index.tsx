@@ -1,15 +1,16 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export type PublicStackParams = {}
+import HomePublic from '../../Pages/public/HomePublic';
+
+export type PublicStackParams = {};
 
 const Stack: any = createNativeStackNavigator<PublicStackParams>();
 
 const PublicRoutes: any = () => (
     <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomePublic} />
     </Stack.Navigator>
 );
 
 export default PublicRoutes;
-
