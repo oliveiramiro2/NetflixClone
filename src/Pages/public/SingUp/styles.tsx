@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     textLabel: {
         color: metrics.colors.color3,
         fontSize: 13,
+        textDecorationLine: 'underline',
     },
 
     input: {
@@ -37,6 +38,8 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: metrics.colors.color4,
         paddingTop: 25,
+        color: metrics.colors.color3,
+        fontSize: 18,
     },
 
     containButton: {

@@ -50,14 +50,15 @@ const SingUp: React.FC = () => {
                             onChangeText={setEmail}
                             autoCapitalize="none"
                             keyboardType="email-address"
+                            placeholderTextColor="#FFFFFF"
                             style={[styles.input]}
                             ref={(ref) => {
                                 if (
                                     ref !== undefined &&
                                     ref &&
-                                    !ref.isFocused()
+                                    email.length === 0
                                 ) {
-                                    setTimeout(() => ref.focus(), 100);
+                                    setTimeout(() => ref.focus(), 1000);
                                 }
                             }}
                         />
@@ -90,6 +91,7 @@ const SingUp: React.FC = () => {
                             style={[styles.input]}
                             defaultValue={password}
                             autoCapitalize="none"
+                            placeholderTextColor="#FFFFFF"
                             onChangeText={setPassword}
                             secureTextEntry
                         />

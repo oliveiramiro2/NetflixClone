@@ -4,6 +4,7 @@ import { metrics } from '../../../services/metrics';
 const styles = StyleSheet.create({
     contain: {
         flex: 1,
+        backgroundColor: metrics.colors.color1,
     },
 
     slide: {
