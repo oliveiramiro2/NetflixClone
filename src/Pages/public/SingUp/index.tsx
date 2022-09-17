@@ -33,7 +33,7 @@ const SingUp: React.FC = () => {
                                 setForceRenderer(bigLabel);
                                 setForceRenderer(null);
                             }}
-                            transition={{ type: 'timing', duration: 1500 }}
+                            transition={{ type: 'timing', duration: 950 }}
                             style={[styles.containLabel]}
                         >
                             <Text
@@ -66,7 +66,7 @@ const SingUp: React.FC = () => {
                         <MotiView
                             from={{ top: 40 }}
                             animate={{ top: 20 }}
-                            transition={{ type: 'timing', duration: 1500 }}
+                            transition={{ type: 'timing', duration: 950 }}
                             onDidAnimate={() => {
                                 setBigLabel((prev) => {
                                     prev[1] = false;
