@@ -6,7 +6,7 @@ import {
     KeyboardAvoidingView,
     TouchableOpacity,
 } from 'react-native';
-import { MotiText, MotiView } from 'moti';
+import { MotiView } from 'moti';
 import React, { useState } from 'react';
 
 import styles from './styles';
@@ -14,6 +14,8 @@ import styles from './styles';
 const SingUp: React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [bigLabel, setBigLabel] = useState<boolean[]>([true, true]);
+    const [, setForceRenderer] = useState<any>();
 
     return (
         <View style={[styles.contain]}>
@@ -23,17 +25,25 @@ const SingUp: React.FC = () => {
                         <MotiView
                             from={{ top: 40 }}
                             animate={{ top: 20 }}
-                            transition={{ type: 'spring' }}
+                            onDidAnimate={() => {
+                                setBigLabel((prev) => {
+                                    prev[0] = false;
+                                    return prev;
+                                });
+                                setForceRenderer(bigLabel);
+                                setForceRenderer(null);
+                            }}
+                            transition={{ type: 'timing', duration: 1500 }}
                             style={[styles.containLabel]}
                         >
-                            <MotiText
-                                from={{ scale: 1.2 }}
-                                animate={{ scale: 1 }}
-                                transition={{ type: 'spring' }}
-                                style={[styles.textLabel]}
+                            <Text
+                                style={[
+                                    styles.textLabel,
+                                    bigLabel[0] && styles.textBigLabel,
+                                ]}
                             >
                                 Email
-                            </MotiText>
+                            </Text>
                         </MotiView>
                         <TextInput
                             defaultValue={email}
@@ -56,17 +66,25 @@ const SingUp: React.FC = () => {
                         <MotiView
                             from={{ top: 40 }}
                             animate={{ top: 20 }}
-                            transition={{ type: 'spring' }}
+                            transition={{ type: 'timing', duration: 1500 }}
+                            onDidAnimate={() => {
+                                setBigLabel((prev) => {
+                                    prev[1] = false;
+                                    return prev;
+                                });
+                                setForceRenderer(bigLabel);
+                                setForceRenderer(null);
+                            }}
                             style={[styles.containLabel]}
                         >
-                            <MotiText
-                                from={{ scale: 1.2 }}
-                                animate={{ scale: 1 }}
-                                transition={{ type: 'spring' }}
-                                style={[styles.textLabel]}
+                            <Text
+                                style={[
+                                    styles.textLabel,
+                                    bigLabel[1] && styles.textBigLabel,
+                                ]}
                             >
                                 Senha
-                            </MotiText>
+                            </Text>
                         </MotiView>
                         <TextInput
                             style={[styles.input]}

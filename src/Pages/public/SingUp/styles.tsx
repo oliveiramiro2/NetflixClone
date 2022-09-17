@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
         zIndex: 99,
     },
 
+    textBigLabel: {
+        fontSize: 18,
+    },
+
     textLabel: {
         color: metrics.colors.color3,
         fontSize: 13,
