@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 
 import RoutesNetflix from './src/routes';
+import AuthProvider from './src/services/auth';
 
 const fontLemonMilkRegular = require('./assets/LEMONMILK-Regular.otf');
 const fontLemonMilkMedium = require('./assets/LEMONMILK-Medium.otf');
@@ -24,8 +25,10 @@ const App: React.FC = () => {
 
     return (
         <NavigationContainer>
-            <RoutesNetflix />
-            <StatusBar style="light" />
+            <AuthProvider>
+                <RoutesNetflix />
+                <StatusBar style="light" />
+            </AuthProvider>
         </NavigationContainer>
     );
 };

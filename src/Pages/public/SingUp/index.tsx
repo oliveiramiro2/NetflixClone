@@ -7,7 +7,10 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { MotiView } from 'moti';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+
+import { auth } from '../../../services/API';
+import { AuthContext } from '../../../services/auth';
 
 import styles from './styles';
 
@@ -16,6 +19,31 @@ const SingUp: React.FC = () => {
     const [password, setPassword] = useState<string>('');
     const [bigLabel, setBigLabel] = useState<boolean[]>([true, true]);
     const [, setForceRenderer] = useState<any>();
+
+    const { setLogined, setUserData } = useContext(AuthContext);
+
+    const singUp: Function = () => {
+        const sendData = {
+            email,
+            password,
+        };
+
+        auth(sendData)
+            .then(() => {
+                /*
+                    set logic to make login like made in finally
+                */
+            })
+            .catch(() => {
+                /*
+                    set a feedback to user with error on login
+                */
+            })
+            .finally(() => {
+                setLogined(true);
+                setUserData({ login: email, password });
+            });
+    };
 
     return (
         <View style={[styles.contain]}>
@@ -99,7 +127,7 @@ const SingUp: React.FC = () => {
                     </View>
 
                     <View style={[styles.containButton]}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => singUp()}>
                             <Text style={[styles.textButton]}>Entrar</Text>
                         </TouchableOpacity>
                     </View>
