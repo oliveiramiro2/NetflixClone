@@ -56,6 +56,7 @@ const SingUp: React.FC = () => {
                                 if (
                                     ref !== undefined &&
                                     ref &&
+                                    !ref.isFocused() &&
                                     email.length === 0
                                 ) {
                                     setTimeout(() => ref.focus(), 1000);
