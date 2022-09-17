@@ -1,5 +1,5 @@
 import { View, Text, ImageBackground, Modal } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
 import ModalSingIn from './components/ModalSingIn';
@@ -64,6 +64,7 @@ const slides: ISliderData[] = [
 const Images: Function = (item: IEachSlider) => (
     <View style={styles.slide}>
         <ImageBackground
+            resizeMode="contain"
             style={[styles.contain]}
             source={{ uri: item.item.image }}
         />
@@ -76,24 +77,40 @@ const Images: Function = (item: IEachSlider) => (
 
 const HomePublic: React.FC = () => {
     const [showModal, setShowModal] = useState<boolean>(false);
-    return (
-        <View style={[styles.contain]}>
-            <AppIntroSlider
-                bottomButton
-                renderNextButton={() => <Button modal={setShowModal} />}
-                renderDoneButton={() => <Button modal={setShowModal} />}
-                renderItem={(item) => Images(item)}
-                data={slides}
-                dotStyle={styles.dotStyles}
-            />
+    const [screenIsReady, setScreenIsReady] = useState<boolean>(false);
 
-            <Modal
-                visible={showModal}
-                onRequestClose={() => setShowModal(false)}
-            >
-                <ModalSingIn modal={setShowModal} />
-            </Modal>
-        </View>
+    useEffect(() => {
+        !screenIsReady && setTimeout(() => setScreenIsReady(true), 5000);
+    }, []);
+
+    if (screenIsReady) {
+        return (
+            <View style={[styles.contain]}>
+                <AppIntroSlider
+                    bottomButton
+                    renderNextButton={() => <Button modal={setShowModal} />}
+                    renderDoneButton={() => <Button modal={setShowModal} />}
+                    renderItem={(item) => Images(item)}
+                    data={slides}
+                    dotStyle={styles.dotStyles}
+                />
+
+                <Modal
+                    visible={showModal}
+                    onRequestClose={() => setShowModal(false)}
+                >
+                    <ModalSingIn modal={setShowModal} />
+                </Modal>
+            </View>
+        );
+    }
+
+    return (
+        <ImageBackground
+            resizeMode="contain"
+            style={[styles.contain]}
+            source={require('../../../assets/imgs/netflixGif.gif')}
+        />
     );
 };
 
