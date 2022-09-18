@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         color: metrics.colors.color3,
     },
 
-    picture: {
+    img: {
         width: metrics.dimensions.width * 0.25,
         height: metrics.dimensions.height * 0.04,
         resizeMode: 'cover',
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         right: 55,
     },
 
-    picture2: {
+    img2: {
         width: metrics.dimensions.width * 0.25,
         height: metrics.dimensions.height * 0.04,
         resizeMode: 'cover',

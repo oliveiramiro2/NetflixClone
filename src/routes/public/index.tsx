@@ -22,7 +22,7 @@ const PublicRoutes: any = () => (
                 headerTransparent: true,
                 headerTitle: () => (
                     <Image
-                        style={[styles.picture]}
+                        style={[styles.img]}
                         source={require('../../assets/imgs/netflix.png')}
                     />
                 ),
@@ -52,7 +52,7 @@ const PublicRoutes: any = () => (
                     <View style={[styles.containArrowBack]}>
                         <Ionicons name="arrow-back" color="white" size={30} />
                         <Image
-                            style={[styles.picture2]}
+                            style={[styles.img2]}
                             source={require('../../assets/imgs/netflix.png')}
                         />
                     </View>

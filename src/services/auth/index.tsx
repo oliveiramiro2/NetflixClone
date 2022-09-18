@@ -11,7 +11,7 @@ export type ILoginData = {
 
 export const AuthContext = createContext<ILoginData>({} as ILoginData);
 
-const AuthProvider: React.FC = ({ children }: any) => {
+const AuthProvider = ({ children }: any) => {
     const [userData, setUserData] = useState<IDataUser>({} as IDataUser);
     const [logined, setLogined] = useState<boolean>(false);
 

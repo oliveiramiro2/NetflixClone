@@ -1,6 +1,8 @@
 import { View, Text, ImageBackground, Modal } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
+import Image from 'react-native-image-progress';
+import ProgressBar from 'react-native-progress/Bar';
 
 import ModalSingIn from './components/ModalSingIn';
 import Button from './components/Button';
@@ -63,10 +65,15 @@ const slides: ISliderData[] = [
 
 const Images: Function = (item: IEachSlider) => (
     <View style={styles.slide}>
-        <ImageBackground
+        <Image
             resizeMode="contain"
             style={[styles.contain]}
             source={{ uri: item.item.image }}
+            indicator={ProgressBar.Circle}
+            indicatorProps={{
+                size: 25,
+                color: metrics.colors.color2,
+            }}
         />
         <View style={[styles.containText]}>
             <Text style={styles.title}>{item.item.title}</Text>

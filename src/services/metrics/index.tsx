@@ -13,6 +13,11 @@ export const metrics = {
         defaultLight: 'LemonMilkL',
         defaultMedium: 'LemonMilkM',
         defaultBold: 'LemonMilkB',
+        default2Regular: 'InterR',
+        default2Light: 'InterL',
+        default2Medium: 'InterM',
+        default2Bold: 'InterB',
+        default2Thin: 'InterT',
     },
 
     dimensions: {

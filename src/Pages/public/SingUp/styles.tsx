@@ -94,6 +94,12 @@ const styles = StyleSheet.create({
     MT5: {
         marginTop: 5,
     },
+
+    flex: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
 
 export default styles;

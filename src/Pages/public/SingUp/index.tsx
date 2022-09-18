@@ -5,10 +5,12 @@ import {
     ScrollView,
     KeyboardAvoidingView,
     TouchableOpacity,
+    Modal,
 } from 'react-native';
 import { MotiView } from 'moti';
 import React, { useState, useContext } from 'react';
 
+import ModalLoading from './components/ModalLoading';
 import { auth } from '../../../services/API';
 import { AuthContext } from '../../../services/auth';
 
@@ -19,10 +21,15 @@ const SingUp: React.FC = () => {
     const [password, setPassword] = useState<string>('');
     const [bigLabel, setBigLabel] = useState<boolean[]>([true, true]);
     const [, setForceRenderer] = useState<any>();
+    const [modalLoading, setModalLoading] = useState<boolean>(false);
 
     const { setLogined, setUserData } = useContext(AuthContext);
 
     const singUp: Function = () => {
+        if (password.length <= 5) return;
+
+        setModalLoading(true);
+
         const sendData = {
             email,
             password,
@@ -40,8 +47,11 @@ const SingUp: React.FC = () => {
                 */
             })
             .finally(() => {
-                setLogined(true);
-                setUserData({ login: email, password });
+                setTimeout(() => {
+                    setModalLoading(false);
+                    setLogined(true);
+                    setUserData({ login: email, password });
+                }, 5000);
             });
     };
 
@@ -127,13 +137,16 @@ const SingUp: React.FC = () => {
                     </View>
 
                     <View style={[styles.containButton]}>
-                        <TouchableOpacity onPress={() => singUp()}>
+                        <TouchableOpacity
+                            style={[styles.flex]}
+                            onPress={() => singUp()}
+                        >
                             <Text style={[styles.textButton]}>Entrar</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={[styles.containNeededHelp]}>
-                        <TouchableOpacity>
+                        <TouchableOpacity style={[styles.flex]}>
                             <Text style={[styles.textNeededHelp]}>
                                 Precisa de ajuda?
                             </Text>
@@ -141,7 +154,7 @@ const SingUp: React.FC = () => {
                     </View>
 
                     <View style={[styles.containNewUser]}>
-                        <TouchableOpacity>
+                        <TouchableOpacity style={[styles.flex]}>
                             <Text
                                 style={[
                                     styles.textNeededHelp,
@@ -161,6 +174,13 @@ const SingUp: React.FC = () => {
                     </View>
                 </KeyboardAvoidingView>
             </ScrollView>
+            <Modal
+                visible={modalLoading}
+                onRequestClose={() => setModalLoading(false)}
+                animationType="slide"
+            >
+                <ModalLoading />
+            </Modal>
         </View>
     );
 };

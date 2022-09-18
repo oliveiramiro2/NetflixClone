@@ -11,12 +11,23 @@ const fontLemonMilkMedium = require('./assets/LEMONMILK-Medium.otf');
 const fontLemonMilkLight = require('./assets/LEMONMILK-Light.otf');
 const fontLemonMilkBold = require('./assets/LEMONMILK-Bold.otf');
 
+const fontInterRegular = require('./assets/Inter-Regular.ttf');
+const fontInterMedium = require('./assets/Inter-Medium.ttf');
+const fontInterLight = require('./assets/Inter-Light.ttf');
+const fontInterBold = require('./assets/Inter-Bold.ttf');
+const fontInterThin = require('./assets/Inter-Thin.ttf');
+
 const App: React.FC = () => {
     const [loaded] = useFonts({
         LemonMilkR: fontLemonMilkRegular,
         LemonMilkM: fontLemonMilkMedium,
         LemonMilkL: fontLemonMilkLight,
         LemonMilkB: fontLemonMilkBold,
+        InterR: fontInterRegular,
+        InterM: fontInterMedium,
+        InterL: fontInterLight,
+        InterB: fontInterBold,
+        InterT: fontInterThin,
     });
 
     if (!loaded) {
@@ -26,8 +37,10 @@ const App: React.FC = () => {
     return (
         <NavigationContainer>
             <AuthProvider>
-                <RoutesNetflix />
-                <StatusBar style="light" />
+                <>
+                    <RoutesNetflix />
+                    <StatusBar style="light" />
+                </>
             </AuthProvider>
         </NavigationContainer>
     );
