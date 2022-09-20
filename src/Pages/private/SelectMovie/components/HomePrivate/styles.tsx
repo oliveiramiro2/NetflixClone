@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { metrics } from '../../../services/metrics';
+import { metrics } from '../../../../../services/metrics';
 
 const styles = StyleSheet.create({
     contain: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     },
 
     containTitle: {
-        marginTop: metrics.dimensions.height * 0.1,
+        marginTop: metrics.dimensions.height * 0.2,
         marginBottom: 30,
     },
 

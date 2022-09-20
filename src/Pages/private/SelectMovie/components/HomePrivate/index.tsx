@@ -4,7 +4,8 @@ import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar';
 
 import styles from './styles';
-import { metrics } from '../../../services/metrics';
+import Header from '../Header';
+import { metrics } from '../../../../../services/metrics';
 
 const userArray: string[] = [
     'Usuário 1',
@@ -14,14 +15,26 @@ const userArray: string[] = [
     'Usuário 5',
 ];
 
-const HomePrivate: React.FC = () => (
+interface IProps {
+    setShowModal(param: boolean): void;
+    setUserName(param: string): void;
+}
+
+const HomePrivate: React.FC<IProps> = ({ setShowModal, setUserName }) => (
     <View style={[styles.contain]}>
+        <Header />
         <View style={[styles.containTitle]}>
             <Text style={[styles.textTitle]}>Quem está assisitindo?</Text>
         </View>
         <View style={[styles.containContent]}>
             {userArray.map((item, index) => (
-                <TouchableOpacity key={index}>
+                <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                        setUserName(item);
+                        setShowModal(false);
+                    }}
+                >
                     <View
                         style={[
                             styles.containImg,
@@ -33,9 +46,11 @@ const HomePrivate: React.FC = () => (
                         <Image
                             source={{
                                 uri: `https://api.lorem.space/image/face?w=${Math.round(
-                                    Math.random() * metrics.dimensions.width
+                                    Math.random() *
+                                        (metrics.dimensions.width * 0.12)
                                 )}&amp;amp;amp;amp;h=${Math.round(
-                                    Math.random() * metrics.dimensions.height
+                                    Math.random() *
+                                        (metrics.dimensions.height * 0.12)
                                 )}`,
                             }}
                             indicator={ProgressBar.Circle}
