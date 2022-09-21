@@ -39,7 +39,7 @@ const App: React.FC = () => {
             <AuthProvider>
                 <>
                     <RoutesNetflix />
-                    <StatusBar style="light" />
+                    <StatusBar style="inverted" />
                 </>
             </AuthProvider>
         </NavigationContainer>

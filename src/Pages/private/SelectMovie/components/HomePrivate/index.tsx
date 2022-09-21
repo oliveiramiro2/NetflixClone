@@ -1,7 +1,7 @@
 import { View, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import Image from 'react-native-image-progress';
-import ProgressBar from 'react-native-progress/Bar';
+import * as ProgressBar from 'react-native-progress';
 
 import styles from './styles';
 import Header from '../Header';
@@ -46,20 +46,21 @@ const HomePrivate: React.FC<IProps> = ({ setShowModal, setUserName }) => (
                         <Image
                             source={{
                                 uri: `https://api.lorem.space/image/face?w=${Math.round(
-                                    Math.random() *
-                                        (metrics.dimensions.width * 0.12)
+                                    Math.random() * metrics.dimensions.width
                                 )}&amp;amp;amp;amp;h=${Math.round(
-                                    Math.random() *
-                                        (metrics.dimensions.height * 0.12)
+                                    Math.random() * metrics.dimensions.height
                                 )}`,
                             }}
-                            indicator={ProgressBar.Circle}
+                            indicator={ProgressBar.Pie}
                             indicatorProps={{
                                 size: 25,
+                                borderWidth: 0,
                                 color: metrics.colors.color2,
+                                unfilledColor: '#3a3939',
                             }}
                             style={[styles.img]}
-                            resizeMode="contain"
+                            imageStyle={[styles.img]}
+                            resizeMode="cover"
                         />
                         <Text
                             style={[
