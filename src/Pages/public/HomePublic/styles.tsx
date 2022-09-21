@@ -5,10 +5,17 @@ const styles = StyleSheet.create({
     contain: {
         flex: 1,
         backgroundColor: metrics.colors.color1,
+        width: metrics.dimensions.width,
+        height: metrics.dimensions.height,
     },
 
     slide: {
         flex: 1,
+    },
+
+    imgSlider: {
+        width: metrics.dimensions.width,
+        height: metrics.dimensions.height,
     },
 
     title: {
