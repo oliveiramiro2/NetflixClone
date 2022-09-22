@@ -8,6 +8,11 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         backgroundColor: metrics.colors.color1,
     },
+
+    text: {
+        fontFamily: metrics.fonts.default2Regular,
+        color: metrics.colors.color3,
+    },
 });
 
 export default styles;
