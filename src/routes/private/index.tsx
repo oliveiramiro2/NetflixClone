@@ -9,7 +9,6 @@ import {
     AntDesign,
 } from '@expo/vector-icons';
 
-// import HomePrivate from '../../pages/private/HomePrivate';
 import SelectMovie from '../../pages/private/SelectMovie';
 import QuickLaugh from '../../pages/private/QuickLaugh';
 import News from '../../pages/private/News';
@@ -18,8 +17,6 @@ import Download from '../../pages/private/Downloads';
 import styles from './styles';
 
 export type PrivateStackParams = {
-    HomePrivate: object | undefined;
-    EnterApp: object | undefined;
     SelectMovie: object | undefined;
     QuickLaugh: object | undefined;
     News: object | undefined;
@@ -27,31 +24,13 @@ export type PrivateStackParams = {
     Download: object | undefined;
 };
 
-type Route = {
-    name: string;
-};
-
-type Navigation = {
-    isFocused(): boolean;
-};
-
-interface RouteData extends Navigation, Route {
-    route: RouteData;
-    navigation: RouteData;
-}
-
-interface IPropsIcons {
-    color: '';
-    size: number;
-}
-
-const TabStack: any = createBottomTabNavigator<PrivateStackParams>();
-// const Stack: any = createNativeStackNavigator<PrivateStackParams>();
+const TabStack = createBottomTabNavigator<PrivateStackParams>();
+// const Stack = createNativeStackNavigator<PrivateStackParams>();
 
 const PrivateRoutes = () => (
     <TabStack.Navigator
-        screenOptions={({ route, navigation }: RouteData) => ({
-            tabBarIcon: ({ color, size }: IPropsIcons) => {
+        screenOptions={({ route, navigation }) => ({
+            tabBarIcon: ({ color, size }) => {
                 if (route.name === 'SelectMovie') {
                     return (
                         <View style={[styles.containIcons]}>
@@ -154,6 +133,7 @@ const PrivateRoutes = () => (
                 borderTopColor: '#000000',
             },
         })}
+        initialRouteName="SelectMovie"
     >
         <TabStack.Screen
             name="SelectMovie"

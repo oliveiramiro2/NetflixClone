@@ -12,9 +12,9 @@ export type PublicStackParams = {
     SingUp: object | undefined;
 };
 
-const Stack: any = createNativeStackNavigator<PublicStackParams>();
+const Stack = createNativeStackNavigator<PublicStackParams>();
 
-const PublicRoutes: any = () => (
+const PublicRoutes = () => (
     <Stack.Navigator>
         <Stack.Screen
             options={({ navigation }: any) => ({
