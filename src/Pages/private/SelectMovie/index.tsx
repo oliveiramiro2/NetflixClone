@@ -36,6 +36,7 @@ export interface IMovieData {
     production_countries?: object[];
     iso_3166_1?: string;
     release_date?: string;
+    first_air_date?: string;
     revenue?: number;
     runtime?: number | null;
     spoken_languages?: object[];
@@ -338,7 +339,10 @@ const SelectMovie: React.FC = () => {
                 transparent
                 style={{ height: 200 }}
             >
-                <ModalSelected dataMovie={movieSelected} />
+                <ModalSelected
+                    dataMovie={movieSelected}
+                    showModal={setShowModalSelected}
+                />
             </Modal>
         </ScrollView>
     );
