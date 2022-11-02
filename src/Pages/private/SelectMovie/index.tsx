@@ -6,14 +6,16 @@ import {
     FlatList,
     Image,
     ScrollView,
+    TouchableOpacity,
 } from 'react-native';
 import React, { useState, useMemo } from 'react';
 
 import HomePrivate from './components/HomePrivate';
+import ModalSelected from './components/ModalSelected';
 import { movies, series, BASE_URL_IMAGE } from '../../../services/API';
 import styles from './styles';
 
-interface IMovieData {
+export interface IMovieData {
     adult?: boolean;
     backdrop_path?: string | null;
     belongs_to_collection?: null | object;
@@ -49,17 +51,35 @@ interface IMovieData {
 interface IListMovieProps extends IMovieData {
     data: IMovieData;
     top?: boolean;
+    setSelected(param: boolean): void;
+    setData(param: IMovieData): void;
 }
 
-const ListMovie: React.FC<IListMovieProps> = ({ data, top, id }) => (
+const ListMovie: React.FC<IListMovieProps> = ({
+    data,
+    top,
+    setSelected,
+    setData,
+    id,
+}) => (
     <View key={id} style={[styles.MH]}>
-        <Image
-            source={{
-                uri: `${BASE_URL_IMAGE}${data.poster_path}`,
+        <TouchableOpacity
+            onPress={() => {
+                setSelected(true);
+                setData(data);
             }}
-            style={[styles.imgs, top !== undefined && top && styles.imgsTop]}
-            resizeMode="cover"
-        />
+        >
+            <Image
+                source={{
+                    uri: `${BASE_URL_IMAGE}${data.poster_path}`,
+                }}
+                style={[
+                    styles.imgs,
+                    top !== undefined && top && styles.imgsTop,
+                ]}
+                resizeMode="cover"
+            />
+        </TouchableOpacity>
     </View>
 );
 
@@ -77,7 +97,6 @@ const SelectMovie: React.FC = () => {
     const [serieOnTheAirWeek, setSerieOnTheAirWeek] = useState<IMovieData[]>(
         [] as IMovieData[]
     );
-    const [showModal, setShowModal] = useState<boolean>(true);
     const [seriesPopular, setSeriesPopular] = useState<IMovieData[]>(
         [] as IMovieData[]
     );
@@ -85,6 +104,11 @@ const SelectMovie: React.FC = () => {
         [] as IMovieData[]
     );
     const [, setUserName] = useState<string>('');
+    const [showModalHome, setShowModalHome] = useState<boolean>(true);
+    const [showModalSelected, setShowModalSelected] = useState<boolean>(false);
+    const [movieSelected, setMovieSelected] = useState<IMovieData>(
+        {} as IMovieData
+    );
 
     useMemo(() => {
         movies('popular', '1')
@@ -177,7 +201,12 @@ const SelectMovie: React.FC = () => {
                             data={moviesPopular}
                             horizontal
                             renderItem={({ item }) => (
-                                <ListMovie data={item} top />
+                                <ListMovie
+                                    data={item}
+                                    top
+                                    setData={setMovieSelected}
+                                    setSelected={setShowModalSelected}
+                                />
                             )}
                         />
                     )}
@@ -191,7 +220,12 @@ const SelectMovie: React.FC = () => {
                             data={seriesPopular}
                             horizontal
                             renderItem={({ item }) => (
-                                <ListMovie data={item} top />
+                                <ListMovie
+                                    data={item}
+                                    top
+                                    setData={setMovieSelected}
+                                    setSelected={setShowModalSelected}
+                                />
                             )}
                         />
                     )}
@@ -204,7 +238,13 @@ const SelectMovie: React.FC = () => {
                         <FlatList
                             data={playingNow}
                             horizontal
-                            renderItem={({ item }) => <ListMovie data={item} />}
+                            renderItem={({ item }) => (
+                                <ListMovie
+                                    data={item}
+                                    setData={setMovieSelected}
+                                    setSelected={setShowModalSelected}
+                                />
+                            )}
                         />
                     )}
                 </View>
@@ -216,7 +256,13 @@ const SelectMovie: React.FC = () => {
                         <FlatList
                             data={topRated}
                             horizontal
-                            renderItem={({ item }) => <ListMovie data={item} />}
+                            renderItem={({ item }) => (
+                                <ListMovie
+                                    data={item}
+                                    setData={setMovieSelected}
+                                    setSelected={setShowModalSelected}
+                                />
+                            )}
                         />
                     )}
                 </View>
@@ -228,7 +274,13 @@ const SelectMovie: React.FC = () => {
                         <FlatList
                             data={serieOnTheAirToday}
                             horizontal
-                            renderItem={({ item }) => <ListMovie data={item} />}
+                            renderItem={({ item }) => (
+                                <ListMovie
+                                    data={item}
+                                    setData={setMovieSelected}
+                                    setSelected={setShowModalSelected}
+                                />
+                            )}
                         />
                     )}
                 </View>
@@ -240,7 +292,13 @@ const SelectMovie: React.FC = () => {
                         <FlatList
                             data={serieOnTheAirWeek}
                             horizontal
-                            renderItem={({ item }) => <ListMovie data={item} />}
+                            renderItem={({ item }) => (
+                                <ListMovie
+                                    data={item}
+                                    setData={setMovieSelected}
+                                    setSelected={setShowModalSelected}
+                                />
+                            )}
                         />
                     )}
                 </View>
@@ -252,20 +310,35 @@ const SelectMovie: React.FC = () => {
                         <FlatList
                             data={seriesTopRated}
                             horizontal
-                            renderItem={({ item }) => <ListMovie data={item} />}
+                            renderItem={({ item }) => (
+                                <ListMovie
+                                    data={item}
+                                    setData={setMovieSelected}
+                                    setSelected={setShowModalSelected}
+                                />
+                            )}
                         />
                     )}
                 </View>
             </View>
             <Modal
-                visible={showModal}
-                onRequestClose={() => setShowModal(false)}
+                visible={showModalHome}
+                onRequestClose={() => setShowModalHome(false)}
                 transparent={false}
             >
                 <HomePrivate
-                    setShowModal={setShowModal}
+                    setShowModal={setShowModalHome}
                     setUserName={setUserName}
                 />
+            </Modal>
+
+            <Modal
+                visible={showModalSelected}
+                onRequestClose={() => setShowModalSelected(false)}
+                transparent
+                style={{ height: 200 }}
+            >
+                <ModalSelected dataMovie={movieSelected} />
             </Modal>
         </ScrollView>
     );

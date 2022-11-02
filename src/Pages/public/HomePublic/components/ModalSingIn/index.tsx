@@ -4,11 +4,11 @@ import {
     TouchableOpacity,
     TextInput,
     KeyboardAvoidingView,
-    Alert,
 } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
+import { AuthContext } from '../../../../../services/auth';
 import Button from '../Button';
 import styles from './styles';
 
@@ -29,6 +29,8 @@ const ModalSingIn: React.FC<IProps> = ({ modal }) => {
     const [, setForceRenderer] = useState<boolean[]>([]);
     const [wrongEmail, setWrongEmail] = useState<boolean>(true);
     const [wrongPassword, setWrongPassword] = useState<boolean>(true);
+
+    const { setLogined } = useContext(AuthContext);
 
     useEffect(() => {
         regexEmail.test(email) ? setWrongEmail(false) : setWrongEmail(true);
@@ -141,10 +143,7 @@ const ModalSingIn: React.FC<IProps> = ({ modal }) => {
                     <Button
                         lock={!(!wrongEmail && !wrongPassword)}
                         onPress={() => {
-                            Alert.alert(
-                                'Sucesso',
-                                'Você foi cadastrado em nosso sistema, realize o login e aproveite a estadia!'
-                            );
+                            setLogined(true);
                             modal(false);
                         }}
                     />

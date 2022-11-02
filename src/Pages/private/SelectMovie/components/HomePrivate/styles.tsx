@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 
     lastOneTextNameUser: {
         textAlign: 'left',
-        marginLeft: metrics.dimensions.width * 0.055,
+        marginLeft: metrics.dimensions.width * 0.082,
     },
 });
 

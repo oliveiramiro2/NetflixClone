@@ -54,7 +54,7 @@ const slides: ISliderData[] = [
     {
         key: 4,
         title: 'Assista onde\nquiser',
-        text: 'Assista no celular, table, laptop,\nTC ou outros aparelhos',
+        text: 'Assista no celular, table, laptop,\nPC ou outros aparelhos',
         image: `https://api.lorem.space/image/movie?w=${Math.round(
             Math.random() * metrics.dimensions.width
         )}&amp;amp;amp;amp;h=${Math.round(

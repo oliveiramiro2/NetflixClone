@@ -6,6 +6,7 @@ export const metrics = {
         color2: '#f00',
         color3: '#fff',
         color4: '#a9a9a9',
+        color5: '#242323',
     },
 
     fonts: {

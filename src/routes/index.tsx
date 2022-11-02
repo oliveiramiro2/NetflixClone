@@ -13,7 +13,7 @@ const RoutesNetflix: Function = () => {
         setStack(logined);
     }, [logined]);
 
-    return stack ? <PublicRoutes /> : <PrivateRoutes />;
+    return stack ? <PrivateRoutes /> : <PublicRoutes />;
 };
 
 export default RoutesNetflix;

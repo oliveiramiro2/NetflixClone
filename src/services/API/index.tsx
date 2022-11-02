@@ -17,10 +17,9 @@ export const auth: Function = (data: IAuthUser) => {
 };
 
 export const movies: Function = (type: string, page?: string) => {
+    const havePage = page === undefined ? '' : `&page=${page}`;
     const req = axios.create({
-        baseURL: `${BASE_URL}movie/${type}?api_key=${TOKEN_API}&language=pt-BR${
-            page !== undefined && `&page=${page}`
-        }`,
+        baseURL: `${BASE_URL}movie/${type}?api_key=${TOKEN_API}&language=pt-BR${havePage}`,
     });
     return req.post('');
 };
