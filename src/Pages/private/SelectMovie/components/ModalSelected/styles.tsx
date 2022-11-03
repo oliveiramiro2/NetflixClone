@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         padding: 10,
+        zIndex: 99,
     },
 
     text: {
@@ -45,12 +46,18 @@ const styles = StyleSheet.create({
     imgAdult: {
         width: 18,
         height: 18,
-        marginLeft: 5,
+        marginLeft: 10,
         marginTop: 2,
+    },
+
+    textDuration: {
+        marginLeft: 10,
+        color: metrics.colors.color4,
     },
 
     textOverview: {
         maxWidth: metrics.dimensions.width * 0.7,
+        height: metrics.dimensions.height * 0.13,
         marginTop: 2,
     },
 

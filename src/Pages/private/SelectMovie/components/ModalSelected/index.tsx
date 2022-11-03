@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
-// import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { AntDesign } from '@expo/vector-icons';
 
 import styles from './styles';
@@ -13,19 +13,32 @@ interface IProps extends IMovieData {
 }
 
 const ModalSelected: React.FC<IProps> = ({ dataMovie, showModal }) => {
-    React.useEffect(() => {
-        /* movies(dataMovie.id?.toString)
-            .then(({ data }) => console.log(data))
-            .catch((err) => console.log(err)); */
-        /* axios
+    const [durationHour, setDurationHour] = useState<number>();
+    const [durationMinute, setDurationMinute] = useState<number>();
+    const [seasonNumber, setSeasonNumber] = useState<number>();
+
+    useEffect(() => {
+        let typeOfContent;
+        dataMovie.title === undefined
+            ? (typeOfContent = 'tv')
+            : (typeOfContent = 'movie');
+        axios
             .get(
-                `https://api.themoviedb.org/3/movie/${dataMovie.id}?api_key=4aed9df3f0686e9061d3735372c2b523&language=pt-BR`
+                `https://api.themoviedb.org/3/${typeOfContent}/${dataMovie.id}?api_key=4aed9df3f0686e9061d3735372c2b523&language=pt-BR`
             )
-            .then(({ data }) =>
-                console.log(data, dataMovie.id, '---', dataMovie.imdb_id)
-            )
-            .catch(() => console.log(dataMovie.id, '---', dataMovie.imdb_id)); */
+            .then(({ data }) => {
+                if (dataMovie.title !== undefined) {
+                    const runTime: string = String(
+                        (data.runtime / 60).toPrecision(2)
+                    );
+                    setDurationHour(Number(runTime.slice(0, 1)));
+                    setDurationMinute(Number(`0.${runTime.slice(2, 4)}`) * 60);
+                } else {
+                    setSeasonNumber(data.number_of_seasons);
+                }
+            });
     }, []);
+
     return (
         <View style={[styles.containClose]}>
             <TouchableOpacity
@@ -33,39 +46,71 @@ const ModalSelected: React.FC<IProps> = ({ dataMovie, showModal }) => {
                 onPress={() => showModal(false)}
             >
                 <View style={[styles.contain]}>
-                    <View style={[styles.containDescription]}>
-                        <Image
-                            style={[styles.img]}
-                            source={{
-                                uri: BASE_URL_IMAGE + dataMovie.poster_path,
-                            }}
-                            resizeMode="cover"
-                        />
-                        <View style={[styles.containDescriptionRight]}>
-                            <Text style={[styles.text, styles.textTitle]}>
-                                {dataMovie.title || dataMovie.name}
-                            </Text>
-                            <View style={[styles.containDescription]}>
-                                <Text
-                                    style={[styles.text, styles.textYearTime]}
-                                >
-                                    {dataMovie.release_date !== undefined
-                                        ? dataMovie.release_date?.slice(0, 4)
-                                        : dataMovie.first_air_date?.slice(0, 4)}
+                    <TouchableOpacity>
+                        <View style={[styles.containDescription]}>
+                            <Image
+                                style={[styles.img]}
+                                source={{
+                                    uri: BASE_URL_IMAGE + dataMovie.poster_path,
+                                }}
+                                resizeMode="cover"
+                            />
+                            <View style={[styles.containDescriptionRight]}>
+                                <Text style={[styles.text, styles.textTitle]}>
+                                    {dataMovie.title || dataMovie.name}
                                 </Text>
-                                {dataMovie.adult && (
-                                    <Image
-                                        style={[styles.imgAdult]}
-                                        source={require('../../../../../assets/imgs/adult.png')}
-                                        resizeMode="cover"
-                                    />
-                                )}
+                                <View style={[styles.containDescription]}>
+                                    <Text
+                                        style={[
+                                            styles.text,
+                                            styles.textYearTime,
+                                        ]}
+                                    >
+                                        {dataMovie.release_date !== undefined
+                                            ? dataMovie.release_date?.slice(
+                                                  0,
+                                                  4
+                                              )
+                                            : dataMovie.first_air_date?.slice(
+                                                  0,
+                                                  4
+                                              )}
+                                    </Text>
+                                    {dataMovie.adult && (
+                                        <Image
+                                            style={[styles.imgAdult]}
+                                            source={require('../../../../../assets/imgs/adult.png')}
+                                            resizeMode="cover"
+                                        />
+                                    )}
+                                    {dataMovie.title !== undefined ? (
+                                        <Text
+                                            style={[
+                                                styles.text,
+                                                styles.textDuration,
+                                            ]}
+                                        >
+                                            {durationHour}h {durationMinute}m
+                                        </Text>
+                                    ) : (
+                                        <Text
+                                            style={[
+                                                styles.text,
+                                                styles.textDuration,
+                                            ]}
+                                        >
+                                            {seasonNumber} temporada(s)
+                                        </Text>
+                                    )}
+                                </View>
+                                <Text
+                                    style={[styles.text, styles.textOverview]}
+                                >
+                                    {dataMovie.overview}
+                                </Text>
                             </View>
-                            <Text style={[styles.text, styles.textOverview]}>
-                                {dataMovie.overview}
-                            </Text>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                     <View
                         style={[
                             styles.containDescription,
