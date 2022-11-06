@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.gif",
-      "resizeMode": "center",
+      "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
     "updates": {
@@ -18,7 +18,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.oliveiramiro2.NetflixClone"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,6 +29,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "66cec0e4-702a-4619-8be6-eb09774f1727"
+      }
     }
   }
 }
