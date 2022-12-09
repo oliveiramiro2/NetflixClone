@@ -3,8 +3,8 @@ import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 
-import HomePublic from '../../pages/public/HomePublic';
-import SingUp from '../../pages/public/SingUp';
+import HomePublic from '../../Pages/public/HomePublic';
+import SingUp from '../../Pages/public/SingUp';
 import styles from './styles';
 
 export type PublicStackParams = {

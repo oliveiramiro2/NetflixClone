@@ -9,11 +9,11 @@ import {
     AntDesign,
 } from '@expo/vector-icons';
 
-import SelectMovie from '../../pages/private/SelectMovie';
-import QuickLaugh from '../../pages/private/QuickLaugh';
-import News from '../../pages/private/News';
-import Games from '../../pages/private/Games';
-import Download from '../../pages/private/Downloads';
+import SelectMovie from '../../Pages/private/SelectMovie';
+import QuickLaugh from '../../Pages/private/QuickLaugh';
+import News from '../../Pages/private/News';
+import Games from '../../Pages/private/Games';
+import Download from '../../Pages/private/Downloads';
 import styles from './styles';
 
 export type PrivateStackParams = {
