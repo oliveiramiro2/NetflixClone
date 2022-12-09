@@ -1,13 +1,17 @@
 {
-    "build": {
-      "preview": {
-        "ios": {
-          "simulator": true
-        },
-        "android": {
-          "buildType": "apk"
-        }
+  "build": {
+    "preview": {
+      "ios": {
+        "simulator": true
       },
-      "production": {}
-    }
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {}
+  },
+  "cli": {
+    "version": ">= 0.52.0",
+    "requireCommit": true
+  }
 }
