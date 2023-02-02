@@ -5,7 +5,7 @@ import styles from './styles';
 
 const News: React.FC = () => (
     <View style={[styles.contain]}>
-        <Text style={[styles.text]}>Novidades</Text>
+        <Text style={[styles.text]}>1</Text>
     </View>
 );
 

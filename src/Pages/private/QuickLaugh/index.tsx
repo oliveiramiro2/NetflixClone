@@ -5,7 +5,7 @@ import styles from './styles';
 
 const QuickLaugh: React.FC = () => (
     <View style={[styles.contain]}>
-        <Text style={[styles.text]}>Risada rápida</Text>
+        <Text style={[styles.text]}>1</Text>
     </View>
 );
 

@@ -13,7 +13,7 @@ export const AuthContext = createContext<ILoginData>({} as ILoginData);
 
 const AuthProvider = ({ children }: any) => {
     const [userData, setUserData] = useState<IDataUser>({} as IDataUser);
-    const [logined, setLogined] = useState<boolean>(false);
+    const [logined, setLogined] = useState<boolean>(true);
 
     return (
         <AuthContext.Provider

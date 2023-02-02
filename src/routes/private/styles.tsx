@@ -3,7 +3,7 @@ import { metrics } from '../../services/metrics';
 
 const styles = StyleSheet.create({
     headerContain: {
-        backgroundColor: '#000000b6',
+        backgroundColor: '#ff0000',
     },
 
     containTab: {
@@ -13,11 +13,18 @@ const styles = StyleSheet.create({
     },
 
     img: {
-        width: metrics.dimensions.width * 0.25,
-        height: metrics.dimensions.height * 0.04,
-        position: 'relative',
-        left: metrics.dimensions.width * 0.33,
+        width: metrics.dimensions.width * 0.13,
+        height: metrics.dimensions.height * 0.05,
+        marginLeft: 10,
+        marginTop: 5,
         resizeMode: 'cover',
+    },
+
+    imgUser: {
+        width: metrics.dimensions.width * 0.1,
+        borderRadius: 10,
+        marginRight: 20,
+        marginLeft: 30,
     },
 
     containIcons: {
@@ -31,6 +38,11 @@ const styles = StyleSheet.create({
         fontSize: 10,
         fontFamily: metrics.fonts.default2Thin,
         fontWeight: '700',
+    },
+
+    textTitle: {
+        color: metrics.colors.color3,
+        fontWeight: 'bold',
     },
 });
 

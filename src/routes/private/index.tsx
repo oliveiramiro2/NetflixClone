@@ -7,6 +7,7 @@ import {
     MaterialCommunityIcons,
     Fontisto,
     AntDesign,
+    FontAwesome,
 } from '@expo/vector-icons';
 
 import SelectMovie from '../../Pages/private/SelectMovie';
@@ -15,6 +16,8 @@ import News from '../../Pages/private/News';
 import Games from '../../Pages/private/Games';
 import Download from '../../Pages/private/Downloads';
 import styles from './styles';
+
+const netflix = require('../../assets/imgs/N.png');
 
 export type PrivateStackParams = {
     SelectMovie: object | undefined;
@@ -47,7 +50,7 @@ const PrivateRoutes = () => (
                         </View>
                     );
                 }
-                if (route.name === 'QuickLaugh') {
+                if (route.name === 'Games') {
                     return (
                         <View style={[styles.containIcons]}>
                             <Ionicons
@@ -79,7 +82,7 @@ const PrivateRoutes = () => (
                         </View>
                     );
                 }
-                if (route.name === 'Games') {
+                if (route.name === 'QuickLaugh') {
                     return (
                         <View style={[styles.containIcons]}>
                             {navigation.isFocused() ? (
@@ -90,7 +93,7 @@ const PrivateRoutes = () => (
                                         color={color}
                                     />
                                     <Text style={[styles.text]}>
-                                        Risadas rápidas
+                                        Risada rápida
                                     </Text>
                                 </>
                             ) : (
@@ -101,7 +104,7 @@ const PrivateRoutes = () => (
                                         color={color}
                                     />
                                     <Text style={[styles.text]}>
-                                        Risadas rápidas
+                                        Risada rápida
                                     </Text>
                                 </>
                             )}
@@ -132,6 +135,7 @@ const PrivateRoutes = () => (
                 borderTopWidth: 2,
                 borderTopColor: '#000000',
             },
+            tabBarLabel: '',
         })}
         initialRouteName="SelectMovie"
     >
@@ -139,45 +143,34 @@ const PrivateRoutes = () => (
             name="SelectMovie"
             component={SelectMovie}
             options={{
-                headerStyle: { ...styles.headerContain },
-                headerTransparent: true,
-                headerTitle: () => (
-                    <Image
-                        style={[styles.img]}
-                        source={require('../../assets/imgs/netflix.png')}
-                    />
+                headerBackground: () => (
+                    <View style={{ flex: 1, backgroundColor: '#0000007a' }} />
                 ),
-                title: '',
-            }}
-        />
-        <TabStack.Screen
-            name="QuickLaugh"
-            component={QuickLaugh}
-            options={{
-                headerStyle: { ...styles.headerContain },
-                headerTransparent: true,
-                headerTitle: () => (
-                    <Image
-                        style={[styles.img]}
-                        source={require('../../assets/imgs/netflix.png')}
-                    />
+                headerLeft: () => (
+                    <View style={{ flex: 1 }}>
+                        <Image source={netflix} style={[styles.img]} />
+                    </View>
                 ),
-                title: '',
-            }}
-        />
-        <TabStack.Screen
-            name="News"
-            component={News}
-            options={{
-                headerStyle: { ...styles.headerContain },
-                headerTransparent: true,
-                headerTitle: () => (
-                    <Image
-                        style={[styles.img]}
-                        source={require('../../assets/imgs/netflix.png')}
-                    />
+                headerRight: () => (
+                    <View
+                        style={{ flex: 1, flexDirection: 'row', marginTop: 5 }}
+                    >
+                        <FontAwesome
+                            name="search"
+                            color="#fff"
+                            size={25}
+                            style={{ marginTop: 10 }}
+                        />
+                        <Image
+                            source={{
+                                uri: 'https://api.lorem.space/image/face',
+                            }}
+                            style={[styles.img, styles.imgUser]}
+                        />
+                    </View>
                 ),
-                title: '',
+                headerTransparent: true,
+                headerStyle: { ...styles.headerContain },
             }}
         />
         <TabStack.Screen
@@ -186,13 +179,61 @@ const PrivateRoutes = () => (
             options={{
                 headerStyle: { ...styles.headerContain },
                 headerTransparent: true,
-                headerTitle: () => (
-                    <Image
-                        style={[styles.img]}
-                        source={require('../../assets/imgs/netflix.png')}
-                    />
+                headerTitleStyle: { ...styles.textTitle },
+                headerRight: () => (
+                    <View
+                        style={{ flex: 1, flexDirection: 'row', marginTop: 5 }}
+                    >
+                        <FontAwesome
+                            name="search"
+                            color="#fff"
+                            size={25}
+                            style={{ marginTop: 10 }}
+                        />
+                        <Image
+                            source={{
+                                uri: 'https://api.lorem.space/image/face',
+                            }}
+                            style={[styles.img, styles.imgUser]}
+                        />
+                    </View>
                 ),
-                title: '',
+                title: 'Jogos',
+            }}
+        />
+        <TabStack.Screen
+            name="News"
+            component={News}
+            options={{
+                headerStyle: { ...styles.headerContain },
+                headerTransparent: true,
+                headerTitleStyle: { ...styles.textTitle },
+                headerRight: () => (
+                    <View
+                        style={{ flex: 1, flexDirection: 'row', marginTop: 5 }}
+                    >
+                        <Ionicons
+                            name="notifications"
+                            color="#fff"
+                            size={25}
+                            style={{ marginTop: 10 }}
+                        />
+                        <Image
+                            source={{
+                                uri: 'https://api.lorem.space/image/face',
+                            }}
+                            style={[styles.img, styles.imgUser]}
+                        />
+                    </View>
+                ),
+                title: 'Novidades',
+            }}
+        />
+        <TabStack.Screen
+            name="QuickLaugh"
+            component={QuickLaugh}
+            options={{
+                headerShown: false,
             }}
         />
         <TabStack.Screen
@@ -201,13 +242,25 @@ const PrivateRoutes = () => (
             options={{
                 headerStyle: { ...styles.headerContain },
                 headerTransparent: true,
-                headerTitle: () => (
-                    <Image
-                        style={[styles.img]}
-                        source={require('../../assets/imgs/netflix.png')}
-                    />
+                headerTitleStyle: { ...styles.textTitle },
+                headerRight: () => (
+                    <View
+                        style={{ flex: 1, flexDirection: 'row', marginTop: 5 }}
+                    >
+                        <FontAwesome
+                            name="search"
+                            color="#fff"
+                            size={25}
+                            style={{ marginTop: 10 }}
+                        />
+                        <Image
+                            source={{
+                                uri: 'https://api.lorem.space/image/face',
+                            }}
+                            style={[styles.img, styles.imgUser]}
+                        />
+                    </View>
                 ),
-                title: '',
             }}
         />
     </TabStack.Navigator>

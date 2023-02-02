@@ -194,9 +194,6 @@ const SelectMovie: React.FC = () => {
         <ScrollView style={[styles.contain]}>
             <View style={[styles.containContent]}>
                 <View style={[styles.containSlider]}>
-                    <Text style={[styles.text, styles.title]}>
-                        Filmes populares
-                    </Text>
                     {moviesPopular.length > 1 && (
                         <FlatList
                             data={moviesPopular}
