@@ -169,6 +169,7 @@ const PrivateRoutes = () => (
                         />
                     </View>
                 ),
+                title: '',
                 headerTransparent: true,
                 headerStyle: { ...styles.headerContain },
             }}
