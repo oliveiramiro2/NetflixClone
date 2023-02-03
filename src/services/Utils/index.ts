@@ -55,3 +55,48 @@ export const videoQL: IQuickLaugth[] = [
     { id: 49 },
     { id: 50 },
 ];
+
+export const getMonthString: Function = (): string => {
+    switch (new Date().getMonth()) {
+        case 0:
+            return 'JAN';
+        case 1:
+            return 'FEV';
+        case 2:
+            return 'MAR';
+        case 3:
+            return 'ABR';
+        case 4:
+            return 'MAI';
+        case 5:
+            return 'JuN';
+        case 6:
+            return 'Jul';
+        case 7:
+            return 'AGO';
+        case 8:
+            return 'SET';
+        case 9:
+            return 'OUT';
+        case 10:
+            return 'NOV';
+        case 11:
+            return 'DEZ';
+        default:
+            return '';
+    }
+};
+
+interface ISemiHeader {
+    id: number;
+    text: string;
+    icon: 'popcorn' | 'fire' | 'gamepad-variant' | 'numeric-10-box';
+}
+
+export const semiHeader: ISemiHeader[] = [
+    { id: 0, text: 'Em breve', icon: 'popcorn' },
+    { id: 1, text: 'Todo mundo está assistindo', icon: 'fire' },
+    { id: 2, text: 'Jogos', icon: 'gamepad-variant' },
+    { id: 3, text: 'Top 10 em séries', icon: 'numeric-10-box' },
+    { id: 4, text: 'Top 10 em filmes', icon: 'numeric-10-box' },
+];
