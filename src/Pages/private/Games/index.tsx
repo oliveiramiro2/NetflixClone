@@ -5,7 +5,7 @@ import styles from './styles';
 import { gamesShow } from '../../../services/Utils';
 import { metrics } from '../../../services/metrics';
 
-const gamesImage = require('../../../assets/imgs/games.png');
+const gamesImage = require('../../../assets/imgs/games.jpeg');
 
 const GameExample: React.FC = () => (
     <View style={[styles.containGameExample]}>

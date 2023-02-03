@@ -4,7 +4,7 @@ import { EvilIcons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-const download = require('../../../assets/imgs/download.png');
+const download = require('../../../assets/imgs/download.jpeg');
 
 const Download: React.FC = () => (
     <ScrollView style={[styles.contain]}>
